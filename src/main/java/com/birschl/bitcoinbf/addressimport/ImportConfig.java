@@ -5,20 +5,18 @@ import org.bitcoinj.core.Transaction;
 import org.bitcoinj.params.MainNetParams;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
-import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
-import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
-import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
-import org.springframework.batch.core.configuration.annotation.StepScope;
+import org.springframework.batch.core.configuration.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import javax.sql.DataSource;
 import java.util.Set;
 
 @Configuration
 @EnableBatchProcessing
-public class ImportConfig {
+public class ImportConfig extends DefaultBatchConfigurer {
 
     public static NetworkParameters NETWORK_PARAMS = new MainNetParams();
 
@@ -72,5 +70,10 @@ public class ImportConfig {
         return jobBuilderFactory.get("blockChainImportJob")
                 .start(importAddressesStep())
                 .build();
+    }
+
+    @Override
+    public void setDataSource(DataSource dataSource) {
+        // Prevent spring batch from using the database
     }
 }

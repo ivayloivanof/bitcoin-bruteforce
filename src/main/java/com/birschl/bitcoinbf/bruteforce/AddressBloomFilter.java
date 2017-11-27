@@ -12,7 +12,7 @@ import java.nio.charset.Charset;
 import java.util.function.Predicate;
 
 
-public class AddressBloomFilter implements Predicate<String> {
+class AddressBloomFilter implements Predicate<String> {
 
     private static final Logger LOG = LoggerFactory.getLogger(AddressBloomFilter.class);
 

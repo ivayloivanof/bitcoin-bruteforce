@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
-public class OnlineAddressVerifier implements Function<String, Match> {
+class OnlineAddressVerifier implements Function<String, Match> {
 
     private BlockExplorer blockExplorer = new BlockExplorer();
 

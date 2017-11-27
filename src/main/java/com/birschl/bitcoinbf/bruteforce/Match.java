@@ -2,7 +2,7 @@ package com.birschl.bitcoinbf.bruteforce;
 
 import info.blockchain.api.blockexplorer.entity.Address;
 
-public class Match {
+class Match {
 
     private Address address;
 

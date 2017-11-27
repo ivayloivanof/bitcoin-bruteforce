@@ -16,6 +16,7 @@ public class BruteForce {
     public void run(){
 
         Stream.generate(new InputKeySupplier())
+                .parallel()
                 .filter(new AddressBloomFilter(bloomFilterFile))
                 .map(new OnlineAddressVerifier())
                 .filter(m -> m!=null)
