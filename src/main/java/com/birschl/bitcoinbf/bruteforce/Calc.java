@@ -1,10 +1,9 @@
 package com.birschl.bitcoinbf.bruteforce;
 
-import org.bitcoinj.core.Address;
-import org.bitcoinj.core.DumpedPrivateKey;
-import org.bitcoinj.core.ECKey;
-import org.bitcoinj.core.NetworkParameters;
+import org.bitcoinj.core.*;
 import org.bitcoinj.params.MainNetParams;
+
+import java.math.BigInteger;
 
 public class Calc {
 
@@ -16,5 +15,9 @@ public class Calc {
         return key.toAddress(np);
     }
 
+    //TODO verify if this is really working in any cases !!!!!
+    public static Address getAddressFromPrivateKey(BigInteger privateKey) {
+        return getAddressFromPrivateKey(Base58.encode(privateKey.toByteArray()));
+    }
 
 }

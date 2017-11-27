@@ -1,4 +1,4 @@
-package com.birschl.bitcoinbf.blockchain;
+package com.birschl.bitcoinbf.addressimport;
 
 import org.bitcoinj.core.*;
 import org.bitcoinj.script.Script;
@@ -16,19 +16,16 @@ public class TransactionProcessor implements ItemProcessor<Transaction, Set<Stri
     @Override
     public Set<String> process(Transaction tx) throws Exception {
         Set<String> addresses = new HashSet<>();
-
         for (TransactionOutput out : tx.getOutputs()) {
             Address addr = getOutputAddress(out);
             if (addr != null)
                 addresses.add(addr.toString());
         }
-
         for (TransactionInput input : tx.getInputs()) {
             Address addr = getInputAddress(input);
             if (addr != null)
                 addresses.add(addr.toString());
         }
-
         return addresses;
     }
 

@@ -1,4 +1,4 @@
-package com.birschl.bitcoinbf.blockchain;
+package com.birschl.bitcoinbf.addressimport;
 
 import org.bitcoinj.core.Context;
 import org.bitcoinj.core.Transaction;
@@ -32,7 +32,6 @@ public class TransactionReader implements ItemReader<Transaction> {
 
     @Override
     public Transaction read() throws UnexpectedInputException, ParseException, NonTransientResourceException {
-
         if (txIterator != null && txIterator.hasNext()) {
             return txIterator.next();
         }

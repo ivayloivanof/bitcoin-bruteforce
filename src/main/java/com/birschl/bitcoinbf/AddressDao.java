@@ -16,6 +16,9 @@ public class AddressDao {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
+    // CREATE SCHEMA `bitcoin` DEFAULT CHARACTER SET ascii ;
+
+
     public void persist(String address) {
         if (address.isEmpty())
             return;
@@ -33,7 +36,7 @@ public class AddressDao {
     }
 
     public void dropAndCreateDb() {
-        jdbcTemplate.execute("DROP TABLE addresses IF EXISTS");
+        jdbcTemplate.execute("DROP TABLE IF EXISTS addresses");
         jdbcTemplate.execute("CREATE TABLE addresses(address VARCHAR(34))");
         // jdbcTemplate.execute("CREATE TABLE addresses(address VARCHAR(34) NOT NULL UNIQUE)");
         //  jdbcTemplate.execute("CREATE INDEX address_id ON addresses(address)");
