@@ -1,4 +1,4 @@
-package com.birschl.bitcoinbf.addressimport;
+package com.birschl.bitcoinbf.addressimportOLD;
 
 import org.bitcoinj.core.NetworkParameters;
 import org.bitcoinj.core.Transaction;

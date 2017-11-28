@@ -1,4 +1,4 @@
-package com.birschl.bitcoinbf.addressimport;
+package com.birschl.bitcoinbf.addressimportOLD;
 
 import com.birschl.bitcoinbf.AddressDao;
 import com.google.common.hash.BloomFilter;

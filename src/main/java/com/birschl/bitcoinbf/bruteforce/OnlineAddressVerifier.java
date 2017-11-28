@@ -13,7 +13,7 @@ class OnlineAddressVerifier implements Function<String, Match> {
     private BlockExplorer blockExplorer = new BlockExplorer();
 
     public OnlineAddressVerifier(){
-        // info.addressimport.api.HttpClient.TIMEOUT_MS = 5000;
+        // info.addressimportOLD.api.HttpClient.TIMEOUT_MS = 5000;
     }
 
     @Override

@@ -1,6 +1,6 @@
 package com.birschl.bitcoinbf.bruteforce;
 
-import com.birschl.bitcoinbf.addressimport.ImportConfig;
+import com.birschl.bitcoinbf.addressimportOLD.ImportConfig;
 import org.bitcoinj.core.ECKey;
 
 import java.math.BigInteger;
