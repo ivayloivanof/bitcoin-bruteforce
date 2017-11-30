@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
  * Supplies all ID's of the bitcoin-core block chain files that has not already been imported into the address-files folder.
  * It also supplies the ID of the last imported file so that it will be updated.
  */
-public class BlockChainFileSupplier implements Iterable<String> {
+class BlockChainFileSupplier implements Iterable<String> {
 
     private final Iterator<String> fileIdsToImportOrUpdate;
 
@@ -54,7 +54,7 @@ public class BlockChainFileSupplier implements Iterable<String> {
 
         // Also update the latest imported address file
         if (addressFiles.size() > 0) {
-            files.add(addressFiles.get(addressFiles.size()-1));
+            files.add(addressFiles.get(addressFiles.size() - 1));
         }
 
         return files.stream().distinct().sorted().collect(Collectors.toList());

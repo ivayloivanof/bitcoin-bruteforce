@@ -6,13 +6,12 @@ import info.blockchain.api.blockexplorer.entity.Address;
 
 import java.io.IOException;
 import java.util.function.Function;
-import java.util.function.Predicate;
 
 class OnlineAddressVerifier implements Function<String, Match> {
 
     private BlockExplorer blockExplorer = new BlockExplorer();
 
-    public OnlineAddressVerifier(){
+    public OnlineAddressVerifier() {
         // info.addressimportOLD.api.HttpClient.TIMEOUT_MS = 5000;
     }
 
@@ -24,8 +23,8 @@ class OnlineAddressVerifier implements Function<String, Match> {
             if (address.getTotalReceived() != 0 || address.getTotalSent() != 0 || address.getTxCount() != 0) {
                 return new Match(address, potentialMatchingPrivateKey);
             }
-        }catch (IOException | APIException e){
-            throw new RuntimeException("Error during online validation for private key "+potentialMatchingPrivateKey,e);
+        } catch (IOException | APIException e) {
+            throw new RuntimeException("Error during online validation for private key " + potentialMatchingPrivateKey, e);
         }
         return null;
     }

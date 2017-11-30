@@ -1,16 +1,20 @@
 package com.birschl.bitcoinbf.addressimport;
 
-import com.birschl.bitcoinbf.addressimportOLD.ImportConfig;
+import com.birschl.bitcoinbf.Constants;
 import org.bitcoinj.core.*;
 import org.bitcoinj.script.Script;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Stream;
 
-public class TransactionProcessor {
+class TransactionProcessor {
 
-    public static Stream<String> process(Transaction tx) {
+    private static final Logger LOG = LoggerFactory.getLogger(TransactionProcessor.class);
+
+    static Stream<String> process(Transaction tx) {
 
         Set<String> addresses = new HashSet<>();
         for (TransactionOutput out : tx.getOutputs()) {
@@ -26,7 +30,7 @@ public class TransactionProcessor {
         return addresses.stream();
     }
 
-    private static Address getInputAddress(TransactionInput in) {
+    static Address getInputAddress(TransactionInput in) {
         try {
             if (!in.isCoinBase()) {
                 return in.getFromAddress();
@@ -34,20 +38,21 @@ public class TransactionProcessor {
                 // System.out.println(" <--- IN: "+addr);
             }
         } catch (ScriptException e) {
-
+            // TODO
             // LOG.error("Error while reading transaction input address", e);
         }
         return null;
     }
 
-    private static Address getOutputAddress(TransactionOutput out) {
+    static Address getOutputAddress(TransactionOutput out) {
         try {
             Script script = out.getScriptPubKey();
             if (script.isSentToAddress() || script.isPayToScriptHash()) {
-                return script.getToAddress(ImportConfig.NETWORK_PARAMS);
+                return script.getToAddress(Constants.NETWORK_PARAMS);
             }
         } catch (ScriptException e) {
-            // LOG.error("Error while reading transaction output address", e);
+            // TODO
+            //LOG.error("Error while reading transaction output address", e);
         }
         return null;
     }

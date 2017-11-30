@@ -1,32 +1,28 @@
 package com.birschl.bitcoinbf.bruteforce;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
+import com.birschl.bitcoinbf.bloomfilter.BloomFilter;
 
 import java.util.stream.Stream;
 
-@Component
 public class BruteForce {
 
 
-    @Value("${bloomfilter.file}")
-    private String bloomFilterFile;
-
-    public void run(){
+    public void run(String bloomFilterFile) {
+        BloomFilter bloomFilter = BloomFilter.importFromFile(bloomFilterFile);
 
         Stream.generate(new InputKeySupplier())
                 .parallel()
-                .filter(new AddressBloomFilter(bloomFilterFile))
+                .map(Calc::getAddressFromPrivateKey)
+                .filter(bloomFilter)
                 .map(new OnlineAddressVerifier())
-                .filter(m -> m!=null)
-                .forEach(match-> {
+                .filter(m -> m != null)
+                .forEach(match -> {
                     System.out.println("MATCH FOUND! PK: "
-                            +match.getPrivateKey()
-                            +" ADDR: "
+                            + match.getPrivateKey()
+                            + " ADDR: "
                             + match.getAddress().getAddress()
-                            +" BALANCE: "
-                            +match.getAddress().getFinalBalance());
+                            + " BALANCE: "
+                            + match.getAddress().getFinalBalance());
                 });
     }
 }

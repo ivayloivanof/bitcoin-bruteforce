@@ -5,11 +5,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Path;
 
-public class AddressFileWriter implements Closeable {
+class AddressFileWriter implements Closeable {
 
     private final FileWriter fileWriter;
 
-    public AddressFileWriter(Path addressFile) {
+    AddressFileWriter(Path addressFile) {
         // TODO delete file if exist
         try {
             fileWriter = new FileWriter(addressFile.toFile());
@@ -19,9 +19,9 @@ public class AddressFileWriter implements Closeable {
 
     }
 
-    public void writeLine(String address) {
+    void writeLine(String address) {
         try {
-            fileWriter.write(address+System.lineSeparator());
+            fileWriter.write(address + System.lineSeparator());
         } catch (IOException e) {
             throw new RuntimeException("Error while writing address file", e);
         }
